@@ -30,7 +30,11 @@ pipeline{
      //terraform init
      steps{
       script{
-       sh "bash plugins.sh"
+      sh '''
+	   cd deploy
+	   terraform init
+	   cd -
+      '''
 }
 }
 }
