@@ -30,7 +30,7 @@ stage("Workspace_cleanup"){
      //terraform init
      steps{
       script{
-       sh "bash plugins.sh"
+       terraform init
 }
 }
 }
