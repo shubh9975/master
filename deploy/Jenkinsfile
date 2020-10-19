@@ -31,7 +31,7 @@ pipeline{
       script{
        sh '''
  	cd deploy    
-	terraform init
+	bash plugins.sh
 	cd -
 
    '''
