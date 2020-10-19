@@ -1,17 +1,10 @@
 pipeline{
-  agent any
-  environment {
-	AC_KEY = credentials('AWS_ACCESS_KEY')
-	SEC_KEY = credentials('AWS_SECRET_KEY')
-
-}
- 
+  agent any  
   stages {
    stage("Opening"){
          steps{
             //Welcome message
             script{
-               sh "cowsay welcome"
                sh "echo 'Welcome to Jenkins'"
 }
 }
@@ -27,40 +20,38 @@ pipeline{
    stage("Repo_clone"){
        //Clone repo from GitHub
       steps {
-         checkout ([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[credentialsId: 'jenkins', url: 'git@github.com:shubh9975/master.git']]])
+         checkout ([$class: 'GitSCM', branches: [[name: '*/shubham']], userRemoteConfigs: [[credentialsId: 'instance_id', url: 'git@github.com:shubh9975/master.git']]])
+
 }
 }
+
+   
    stage("terraform_init"){
      //terraform init
      steps{
       script{
-       sh '''
-         cowsay terraform init
-         cd ..
-         cd infra
-         bash plugins.sh $AC_KEY $SEC_KEY
-         cd -
-       '''
+      sh '''
+	   cd deploy
+	   terraform init
+	   cd -
+      '''
 }
 }
 }
 
+   
    stage("static_analysis"){
      //static analysis
-       
-     
-       steps{
+      steps{
        script{
        sh '''
-            cowsay static_analysis
-            cd ..
-            cd infra
+            cd static_analysis
             terraform validate 
             cd -
        '''
 }
 }
-}
+}   
 
 }
 }
