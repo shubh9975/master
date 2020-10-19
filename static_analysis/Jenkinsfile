@@ -45,7 +45,7 @@ pipeline{
       steps{
        script{
        sh '''
-            cd infra
+            cd static_analysis
             terraform validate 
             cd -
        '''
