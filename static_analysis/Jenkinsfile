@@ -31,7 +31,7 @@ pipeline{
      steps{
       script{
       sh '''
-	   cd deploy
+	   cd infra
 	   terraform init
 	   cd -
       '''
@@ -45,7 +45,7 @@ pipeline{
       steps{
        script{
        sh '''
-            cd static_analysis
+            cd infra
             terraform validate 
             cd -
        '''
