@@ -30,7 +30,12 @@ stage("Workspace_cleanup"){
      //terraform init
      steps{
       script{
-       terraform init
+       sh'''
+	cd infra
+
+	terraform init
+        cd -
+   '''
 }
 }
 }
