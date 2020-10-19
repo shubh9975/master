@@ -30,8 +30,9 @@ pipeline{
      steps{
       script{
        sh '''
-    
-	bash plugins.sh"
+ 	cd deploy    
+	terraform init
+	cd -
 
    '''
 }
@@ -44,7 +45,7 @@ pipeline{
       steps{
        script{
        sh '''
-            cd infra
+            cd deploy
             terraform validate 
             cd -
        '''
