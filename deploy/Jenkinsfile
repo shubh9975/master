@@ -58,7 +58,7 @@ pipeline{
       steps{
        script{
        sh '''
-            cd infra
+            cd deploy
             terraform plan 
             cd -
        '''        
@@ -71,7 +71,7 @@ pipeline{
      steps{
       script{
        sh '''
-            cd infra
+            cd deploy
             terraform apply --auto-approve 
             cd -
        '''
