@@ -26,6 +26,14 @@ pipeline{
 }
 
    
+   stage("terraform_init"){
+     //terraform init
+     steps{
+      script{
+       sh "bash plugins.sh"
+}
+}
+}
 
    
    stage("static_analysis"){
